@@ -40,3 +40,196 @@
 .read-the-docs {
   color: #888;
 }
+/* App.css */
+.App {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: sans-serif;
+  background-color: #121212;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+/* Add perspective to parent container */
+.retro-computer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  perspective: 1000px; /* 👈 creates depth */
+}
+
+/* Monitor cube with 3D tilt */
+.monitor {
+  width: 360px;              /* 👈 fixed width */
+  height: 300px;             /* 👈 fixed height */
+  background: peachpuff;     /* retro beige/peach */
+  border: 6px solid #d4b499; /* darker frame border */
+  border-radius: 8px;
+  position: relative;        /* so screen can sit inside */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+  transform-style: preserve-3d;
+  transform: rotateY(-20deg) rotateX(10deg); /* slight tilt */
+}
+/* Front screen face */
+.monitor-front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #f5d6b5; /* peachy beige */
+  border: 4px solid #d4b08c;
+  transform: translateZ(50px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Back face */
+.monitor-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #c9a87a;
+  transform: translateZ(-50px) rotateY(180deg);
+}
+
+/* Left side */
+.monitor-left {
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  background: #d9b88f;
+  left: -50px;
+  transform: rotateY(-90deg);
+}
+
+/* Right side */
+.monitor-right {
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  background: #d9b88f;
+  right: -50px;
+  transform: rotateY(90deg);
+}
+
+/* Top */
+.monitor-top {
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  background: #e6c8a0;
+  top: -50px;
+  transform: rotateX(90deg);
+}
+
+/* Bottom */
+.monitor-bottom {
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  background: #b8966b;
+  bottom: -50px;
+  transform: rotateX(-90deg);
+}
+
+/* Screen slightly inset for depth */
+.screen {
+  background: #111;
+  width: 75%;
+  height: 60%;
+  border-radius: 4px;
+  border: 3px inset #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* push it "into" the cube */
+  transform: translateZ(-20px);
+  box-shadow: inset 0 0 15px #000, 0 0 10px rgba(0,255,200,0.2);
+}
+
+/* Desktop screen */
+.desktop {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.desktop:hover {
+  background-color: #1a1a1a;
+}
+
+.desktop-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.desktop-subtitle {
+  font-size: 1.2rem;
+  color: #aaa;
+}
+/* Desk base */
+.desk {
+  position: relative;
+  width: 500px;
+  height: 40px;
+  background: #8b5a2b; /* warm wood tone */
+  border: 4px solid #5c3a1e;
+  border-radius: 6px;
+  margin-top: 20px;
+
+  /* 3D illusion */
+  box-shadow: 
+    inset 0 -5px 10px rgba(0,0,0,0.5),
+    0 10px 20px rgba(0,0,0,0.4);
+}
+
+/* Desk legs */
+.desk::before,
+.desk::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 120px;
+  background: #5c3a1e;
+  bottom: -120px;
+}
+
+.desk::before {
+  left: 40px;
+}
+
+.desk::after {
+  right: 40px;
+}
+/* Zoomed screen */
+.zoomed-screen {
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  background-color: #1e1e1e;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  transform: scale(0);
+  animation: zoomIn 0.8s forwards;
+}
+
+@keyframes zoomIn {
+  to {
+    transform: scale(1);
+  }
+}

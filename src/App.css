@@ -1,199 +1,196 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-/* App.css */
-.App {
-  width: 100vw;
+/* ===== Scene & Hover ===== */
+body {
+  margin: 0;
   height: 100vh;
-  overflow: hidden;
-  font-family: sans-serif;
-  background-color: #121212;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  perspective: 1000px;
-}
-/* Add perspective to parent container */
-.retro-computer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  perspective: 1000px; /* 👈 creates depth */
+  display: grid;
+  place-items: center;
+
+  /* Multiple layered gradients for sunset feel */
+  background: linear-gradient(-45deg,
+    #ff9a9e, #fad0c4 30%,
+    #fbc2eb, #a6c1ee 60%,
+    #fddb92, #d1fdff 90%
+  );
+  background-size: 400% 400%;
+  animation: sunsetShift 40s ease infinite;
 }
 
-/* Monitor cube with 3D tilt */
-.monitor {
-  width: 360px;              /* 👈 fixed width */
-  height: 300px;             /* 👈 fixed height */
-  background: peachpuff;     /* retro beige/peach */
-  border: 6px solid #d4b499; /* darker frame border */
-  border-radius: 8px;
-  position: relative;        /* so screen can sit inside */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
-  transform-style: preserve-3d;
-  transform: rotateY(-20deg) rotateX(10deg); /* slight tilt */
-}
-/* Front screen face */
-.monitor-front {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #f5d6b5; /* peachy beige */
-  border: 4px solid #d4b08c;
-  transform: translateZ(50px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Animate the gradient slowly */
+@keyframes sunsetShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 50% 100%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 0%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-/* Back face */
-.monitor-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #c9a87a;
-  transform: translateZ(-50px) rotateY(180deg);
+.scene {
+  perspective: 1100px;
 }
 
-/* Left side */
-.monitor-left {
-  position: absolute;
-  width: 100px;
-  height: 100%;
-  background: #d9b88f;
-  left: -50px;
-  transform: rotateY(-90deg);
-}
-
-/* Right side */
-.monitor-right {
-  position: absolute;
-  width: 100px;
-  height: 100%;
-  background: #d9b88f;
-  right: -50px;
-  transform: rotateY(90deg);
-}
-
-/* Top */
-.monitor-top {
-  position: absolute;
-  width: 100%;
-  height: 100px;
-  background: #e6c8a0;
-  top: -50px;
-  transform: rotateX(90deg);
-}
-
-/* Bottom */
-.monitor-bottom {
-  position: absolute;
-  width: 100%;
-  height: 100px;
-  background: #b8966b;
-  bottom: -50px;
-  transform: rotateX(-90deg);
-}
-
-/* Screen slightly inset for depth */
-.screen {
-  background: #111;
-  width: 75%;
-  height: 60%;
-  border-radius: 4px;
-  border: 3px inset #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  /* push it "into" the cube */
-  transform: translateZ(-20px);
-  box-shadow: inset 0 0 15px #000, 0 0 10px rgba(0,255,200,0.2);
-}
-
-/* Desktop screen */
-.desktop {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.5s ease;
-}
-
-.desktop:hover {
-  background-color: #1a1a1a;
-}
-
-.desktop-title {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.desktop-subtitle {
-  font-size: 1.2rem;
-  color: #aaa;
-}
-/* Desk base */
-.desk {
+.computer {
   position: relative;
-  width: 500px;
-  height: 40px;
-  background: #8b5a2b; /* warm wood tone */
-  border: 4px solid #5c3a1e;
-  border-radius: 6px;
-  margin-top: 20px;
+  width: 700px;
+  height: 600px;
+  transform-style: preserve-3d;
+  transform: rotateX(-15deg) rotateY(25deg);
+  transition: transform 280ms ease;
+}
 
-  /* 3D illusion */
-  box-shadow: 
-    inset 0 -5px 10px rgba(0,0,0,0.5),
-    0 10px 20px rgba(0,0,0,0.4);
+/* hover desk + computer together */
+.scene:hover .computer {
+  transform: rotateX(-15deg) rotateY(25deg) scale(1.06);
+}
+
+/* ===== Shared materials ===== */
+:root {
+  --peach: #f9c9a3;
+  --peach-edge: #d9a066;
+}
+
+.face {
+  position: absolute;
+  background: var(--peach);
+  border: 2px solid var(--peach-edge);
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   MONITOR
+   ========================================================= */
+.monitor {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  width: 220px;
+  height: 200px;
+  transform-style: preserve-3d;
+  transform: translateX(-50%);
+}
+
+.monitor .front  { width: 220px; height: 200px; transform: rotateY(0)      translateZ(80px); }
+.monitor .back   { width: 220px; height: 200px; transform: rotateY(180deg)  translateZ(80px); }
+.monitor .right  { width: 160px; height: 200px; transform: rotateY(90deg)   translateZ(110px); }
+.monitor .left   { width: 160px; height: 200px; transform: rotateY(-90deg)  translateZ(110px); }
+.monitor .top    { width: 220px; height: 160px; transform: rotateX(90deg)   translateZ(100px); }
+.monitor .bottom { width: 220px; height: 160px; transform: rotateX(-90deg)  translateZ(100px); }
+
+.monitor .front {
+  display: grid;
+  place-items: center;
+  background: var(--peach);
+}
+
+.screen {
+  width: 80%;
+  height: 60%;
+  background: #0a0a0a;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: #32ff32;
+  font: 700 18px/1 "Courier New", monospace;
+  text-shadow: 0 0 5px #32ff32, 0 0 14px #32ff32;
+  box-shadow: inset 0 0 22px rgba(0,0,0,0.85);
+}
+
+.cursor {
+  animation: blink 1s steps(1) infinite;
+  margin-left: 6px;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+/* =========================================================
+   NECK
+   ========================================================= */
+.neck {
+  position: absolute;
+  top: 240px;
+  left: 50%;
+  width: 80px;
+  height: 90px;
+  transform: translateX(-50%);
+  transform-style: preserve-3d;
+}
+
+.neck .front  { width: 80px; height: 90px; transform: rotateY(0)      translateZ(40px); }
+.neck .back   { width: 80px; height: 90px; transform: rotateY(180deg)  translateZ(40px); }
+.neck .right  { width: 80px; height: 90px; transform: rotateY(90deg)   translateZ(40px); }
+.neck .left   { width: 80px; height: 90px; transform: rotateY(-90deg)  translateZ(40px); }
+.neck .top    { width: 80px; height: 80px; transform: rotateX(90deg)   translateZ(45px); }
+.neck .bottom { width: 80px; height: 80px; transform: rotateX(-90deg)  translateZ(45px); }
+
+/* =========================================================
+   KEYBOARD
+   ========================================================= */
+.keyboard {
+  position: absolute;
+  top: 260px;
+  left: 50%;
+  transform: translateX(-45%) translateZ(40px) rotateX(45deg);
+  transform-origin: top center;
+  width: 320px;
+  height: 140px;
+  background: var(--peach);
+  border: 2px solid var(--peach-edge);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.keys {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  gap: 8px;
+  width: 90%;
+  height: 85%;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 8px;
+}
+
+.key {
+  width: 14px;
+  height: 14px;
+  margin: 1px;
+  background: white;
+  border: 1px solid #bbb;
+  border-radius: 2px;
+  transform: rotateX(-45deg);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+}
+
+/* =========================================================
+   DESK
+   ========================================================= */
+.desk {
+  position: absolute;
+  top: 380px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 50px;
+  background: #d19b6c;
+  border: 2px solid #b0784c;
+  border-radius: 4px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  z-index: -1;
+  transition: all 0.3s ease;
 }
 
 /* Desk legs */
@@ -201,35 +198,95 @@
 .desk::after {
   content: "";
   position: absolute;
-  width: 20px;
-  height: 120px;
-  background: #5c3a1e;
-  bottom: -120px;
+  width: 50px;
+  height: 220px;
+  background: #d19b6c;
+  border: 2px solid #b0784c;
+  bottom: -220px;
 }
 
-.desk::before {
-  left: 40px;
+.desk::before { left: 50px; }   /* left leg */
+.desk::after  { right: 50px; }  /* right leg */
+
+/* Desk hover in sync with computer */
+.scene:hover .desk {
+  background: #e0aa78;
+  transform: translateX(-50%) scale(1.02);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.4);
 }
 
-.desk::after {
-  right: 40px;
-}
-/* Zoomed screen */
-.zoomed-screen {
-  width: 100%;
-  height: 100%;
+.about-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+
+  width: 80vw;
+  max-width: 900px;
+  height: 70vh;
+  max-height: 650px;
+
+  background: #0a0a0a;
+  border-radius: 18px;
+  box-shadow: 0 0 50px rgba(0, 255, 0, 0.5); /* ✅ green glow */
   padding: 2rem;
-  background-color: #1e1e1e;
+
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
-  transform: scale(0);
-  animation: zoomIn 0.8s forwards;
+  align-items: center;
+
+  color: #ffd700;  /* ✅ golden text */
+  font-family: "Courier New", monospace;
+  text-align: center;
+
+  animation: bounceIn 0.9s ease forwards;
+  overflow-y: auto;
 }
 
-@keyframes zoomIn {
-  to {
-    transform: scale(1);
+/* Content inside */
+.about-content {
+  width: 100%;
+  max-width: 700px;
+}
+
+/* Headings: golden text + green glow */
+.about-panel h2,
+.about-panel h3 {
+  color: #ffd700;
+  text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 40px #00ff00;
+  margin-bottom: 1rem;
+}
+
+/* Body text: softer golden with green glow */
+.about-panel p,
+.about-panel li {
+  color: #ffe97a;
+  text-shadow: 0 0 6px #00ff00;
+}
+
+/* Custom list bullets */
+.about-panel li::before {
+  content: "▸ ";
+  color: #00ff00;
+}
+
+/* === Bounce animation === */
+@keyframes bounceIn {
+  0% {
+    transform: translate(-50%, -50%) scale(0.7);
+    opacity: 0;
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(1.05);
+    opacity: 1;
+  }
+  80% {
+    transform: translate(-50%, -50%) scale(0.97);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
   }
 }
+
+

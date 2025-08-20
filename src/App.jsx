@@ -1,74 +1,95 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { useState } from "react";
 import "./App.css";
 
-const App = () => {
-  const [zoomedIn, setZoomedIn] = useState(false);
+function App() {
+  const [zoomed, setZoomed] = useState(false);
 
   return (
-    <div className="app">
-      {!zoomedIn ? (
-        <motion.div
-          className="retro-computer"
-          initial={{ scale: 1, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1,y: [0, -10, 0], // 👈 floating motion
-            rotateY: [0, 2, -2, 0]  }}
-          whileHover={{ scale: 1.05 }}
-          onClick={() => setZoomedIn(true)}
-        >
-          {/* Monitor cube */}
-          <div className="monitor">
-            <div className = "monitor-front">
-               <div className="screen">
-                  <h1 className="name-text">Hi, I am Angela 👋</h1>
-               </div>
-            </div>
-          <div className="monitor-back"></div>
-          <div className="monitor-left"></div>
-          <div className="monitor-right"></div>
-          <div className="monitor-top"></div>
-          <div className="monitor-bottom"></div>
-          </div>
-          {/* Base */}
-          <div className="base" />
-
-          {/* Optional keyboard */}
-          <div className="keyboard" />
-          <div className="desk"></div>   {/* new desk */}
-        </motion.div>
-      ) : (
-        <motion.div
-          className="retro-block"
-          initial={{ scale: 0.5, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
-          <div className="screen-inner">
-            <h1>About Me</h1>
+    <div className="scene">
+      {/* ===== ABOUT SCREEN PANEL ===== */}
+      {zoomed && (
+        <div className="about-panel">
+          <div className="about-content">
+            <h2>About Me</h2>
             <p>
-              Hello! I’m Angela, a software engineer passionate about React and
-              interactive web experiences.
+              Hello! I’m Angela, a software engineer passionate about React
+              and interactive web experiences.
             </p>
 
-            <h2>Projects</h2>
+            <h3>Projects</h3>
             <ul>
               <li>Portfolio site</li>
               <li>Game project</li>
               <li>Other apps</li>
             </ul>
 
-            <h2>Skills</h2>
+            <h3>Skills</h3>
             <ul>
               <li>React</li>
               <li>Three.js</li>
               <li>JavaScript & C++</li>
             </ul>
+
+            <button className="back-btn" onClick={() => setZoomed(false)}>
+              ◀ Back
+            </button>
           </div>
-        </motion.div>
+        </div>
+      )}
+
+      {/* ===== COMPUTER SETUP ===== */}
+      {!zoomed && (
+        <>
+          <div className="computer">
+            {/* ===== MONITOR ===== */}
+            <div className="monitor">
+              <div className="face front">
+                <div className="screen" onClick={() => setZoomed(true)}>
+                  <div className="screen-link">
+                    Hi I’m Angela<span className="cursor">▌</span>
+                  </div>
+                </div>
+              </div>
+              <div className="face back"></div>
+              <div className="face right"></div>
+              <div className="face left"></div>
+              <div className="face top"></div>
+              <div className="face bottom"></div>
+            </div>
+
+            {/* ===== NECK ===== */}
+            <div className="neck">
+              <div className="face front"></div>
+              <div className="face back"></div>
+              <div className="face right"></div>
+              <div className="face left"></div>
+              <div className="face top"></div>
+              <div className="face bottom"></div>
+            </div>
+
+            {/* ===== KEYBOARD ===== */}
+            <div className="keyboard">
+              <div className="kb-face top">
+                <div className="keys">
+                  {Array.from({ length: 4 }).map((_, r) => (
+                    <div className="row" key={r}>
+                      {Array.from({ length: 12 }).map((_, c) => (
+                        <div className="key" key={c}></div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ===== DESK ===== */}
+          <div className="desk"></div>
+        </>
       )}
     </div>
   );
-};
+}
 
 export default App;
 

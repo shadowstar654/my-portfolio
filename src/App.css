@@ -139,7 +139,7 @@ body {
   position: absolute;
   top: 260px;
   left: 50%;
-  transform: translateX(-45%) translateZ(40px) rotateX(45deg);
+  transform: translateX(-45%) translateZ(40px) rotateX(75deg);
   transform-origin: top center;
   width: 320px;
   height: 140px;

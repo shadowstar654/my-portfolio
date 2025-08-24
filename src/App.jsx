@@ -17,9 +17,42 @@ function App() {
 
             <h3>Projects</h3>
             <ul>
-              <li>Portfolio site</li>
-              <li>Game project</li>
-              <li>Other apps</li>
+              <li>
+                 <a
+                    href="https://github.com/shadowstar654/my-portfolio" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                 >
+                    Portfolio Site
+                 </a>
+              </li>
+              <li>
+                 <a
+                    href="https://github.com/shadowstar654/Client-Server-Chat-Model"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                 >
+                    Client-Server-Chat Model
+                 </a>
+              </li>
+              <li>
+                 <a 
+                    href="https://github.com/shadowstar654/Dementia-Prediction-Model"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                 >
+                    Dementia-Prediction-Model
+                 </a>
+              </li>
+              <li>
+                 <a
+                    href="https://github.com/shadowstar654/Building-A-Router-and-Dive-Into-TCP"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                 >
+                    Building-A-Router-and-Dive-Into-TCP
+                 </a>
+              </li>
             </ul>
 
             <h3>Skills</h3>

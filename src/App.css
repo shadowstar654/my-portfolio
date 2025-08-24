@@ -45,12 +45,14 @@ body {
   transform-style: preserve-3d;
   transform: rotateX(-15deg) rotateY(25deg);
   transition: transform 280ms ease;
+  margin-top: 60px;  /* pushes computer downward onto desk */
 }
 
 /* hover desk + computer together */
 .scene:hover .computer {
-  transform: rotateX(-10deg) rotateY(20deg) scale(1.06) rotateZ(1deg);
+  transform: rotateX(-15deg) rotateY(-10deg) scale(1.06) rotateZ(1deg);
   transition: transform 0.6s ease; /* make it smoother */
+  margin-top: 60px;  /* pushes computer downward onto desk */
 }
 
 /* ===== Shared materials ===== */
@@ -78,7 +80,72 @@ body {
   transform-style: preserve-3d;
   transform: translateX(-50%);
 }
+.monitor .left::before,
+.monitor .right::before {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 60px;
+  top: 40px;
+  left: 15%;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.35) 0 2px,
+    transparent 2px 7px
+  );
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+  pointer-events: none;
+}
 
+/* Top vents */
+.monitor .top::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  top: 20px;
+  height: 40px;
+  background: repeating-linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.3) 0 2px,
+    transparent 2px 8px
+  );
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  pointer-events: none;
+}
+
+/* Back vents */
+.monitor .back::before {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 100px;
+  top: 40px;
+  left: 15%;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.35) 0 2px,
+    transparent 2px 7px
+  );
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  pointer-events: none;
+}
+
+/* Optional little screw details for realism */
+.monitor .back::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  background:
+    radial-gradient(circle at 20px 20px, rgba(0,0,0,0.35) 0 2px, transparent 3px),
+    radial-gradient(circle at calc(100% - 20px) 20px, rgba(0,0,0,0.35) 0 2px, transparent 3px),
+    radial-gradient(circle at 20px calc(100% - 20px), rgba(0,0,0,0.35) 0 2px, transparent 3px),
+    radial-gradient(circle at calc(100% - 20px) calc(100% - 20px), rgba(0,0,0,0.35) 0 2px, transparent 3px);
+  pointer-events: none;
+}
 .monitor .front  { width: 220px; height: 200px; transform: rotateY(0)      translateZ(80px); }
 .monitor .back   { width: 220px; height: 200px; transform: rotateY(180deg)  translateZ(80px); }
 .monitor .right  { width: 160px; height: 200px; transform: rotateY(90deg)   translateZ(110px); }
@@ -184,7 +251,7 @@ body {
   top: 380px;
   left: 50%;
   transform: translateX(-50%);
-  width: 600px;
+  width: 800px;
   height: 50px;
   background: #d19b6c;
   border: 2px solid #b0784c;
@@ -289,5 +356,33 @@ body {
     transform: translate(-50%, -50%) scale(1);
   }
 }
+/* Screen text centered */
+.screen-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
 
+/* Main intro */
+.intro-text {
+  font-size: 1.4rem;   /* smaller */
+  color: #00ff88;
+  text-shadow: 0 0 10px #00ff88;
+}
+.click-hint {
+  margin-top: 0.9rem;
+  font-size: 0.9rem;
+  color: #90ee90; /* soft green */
+  text-shadow: 0 0 8px #4caf50;
+  opacity: 0.8;
+  animation: blink 2s infinite ease-in-out;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.3; }
+}
 

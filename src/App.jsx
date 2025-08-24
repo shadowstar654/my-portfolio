@@ -12,8 +12,7 @@ function App() {
           <div className="about-content">
             <h2>About Me</h2>
             <p>
-              Hello! I’m Angela, a software engineer passionate about React
-              and interactive web experiences.
+              Hello! I’m Angela, a Computer Science student exploring how design, interactivity, and code can come together to create meaningful experiences. I enjoy building interactive projects with React and JavaScript, experimenting with modeling and problem-solving in Python, and drawing on my background in C++ for strong fundamentals in algorithms.
             </p>
 
             <h3>Projects</h3>
@@ -46,7 +45,8 @@ function App() {
               <div className="face front">
                 <div className="screen" onClick={() => setZoomed(true)}>
                   <div className="screen-link">
-                    Hi I’m Angela<span className="cursor">▌</span>
+                    Hi I’m Angela! <span className="cursor">▌</span>
+                    <div className="click-hint">Click on the screen to continue</div>
                   </div>
                 </div>
               </div>

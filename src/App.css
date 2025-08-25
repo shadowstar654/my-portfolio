@@ -1,8 +1,11 @@
 /* ===== Scene & Hover ===== */
-/** {
-  cursor: url("https://cdn.custom-cursor.com/db/21543/hello-kitty-donat-and-milk-hello-kitty-pointer.png") 0 0, auto !important;
+* {
+  cursor: url("/hello-kitty-cursor-32.png") 0 0, auto !important;
 }
-*/
+/* Hover cursor (milk carton Hello Kitty) */
+a:hover, button:hover, .clickable:hover {
+  cursor: url("/hello-kitty-milk-32.png") 16 16, auto !important;
+}
 body {
   margin: 0;
   height: 100vh;

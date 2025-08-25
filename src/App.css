@@ -1,4 +1,8 @@
 /* ===== Scene & Hover ===== */
+/** {
+  cursor: url("https://cdn.custom-cursor.com/db/21543/hello-kitty-donat-and-milk-hello-kitty-pointer.png") 0 0, auto !important;
+}
+*/
 body {
   margin: 0;
   height: 100vh;
@@ -32,6 +36,8 @@ body {
   100% {
     background-position: 0% 50%;
   }
+  /*cursor: url("https://cdn.custom-cursor.com/db/21543/hello-kitty-donat-and-milk-hello-kitty-pointer.png") 16 0, auto;*/
+  
 }
 
 .scene {
@@ -396,3 +402,53 @@ ul li a:hover {
   color: #32ff32;
   text-shadow: 0 0 6px #32ff32;
 }
+.github-viewer {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #111;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,255,136,0.5);
+  color: #eee;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.github-viewer h4 {
+  color: #00ff88;
+  margin-bottom: 0.5rem;
+}
+
+.github-viewer a {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #00ff88;
+  text-decoration: underline;
+}
+.github-btn {
+  display: inline-block;
+  margin: 12px 0;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: #24292e;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.github-btn:hover {
+  background: #0366d6;
+}
+.projects-list li {
+  cursor: pointer;
+  margin: 6px 0;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #39ff14;; /* keep consistent */
+  transition: all 0.2s ease;
+}
+
+.projects-list li:hover {
+  font-weight: 700;   /* bold on hover */
+  transform: scale(1.05); /* tiny zoom for feedback */
+}
+

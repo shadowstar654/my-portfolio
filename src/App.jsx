@@ -1,8 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
   const [zoomed, setZoomed] = useState(false);
+  const [activeRepo, setActiveRepo] = useState(null);
+  const [repoReadme, setRepoReadme] = useState("Click a project to view details.");
+
+  // Fetch GitHub README when activeRepo changes
+  useEffect(() => {
+    if (activeRepo) {
+      fetch(`https://api.github.com/repos/${activeRepo}/readme`, {
+        headers: { Accept: "application/vnd.github.v3.html" },
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error("Failed to load");
+          return res.text();
+        })
+        .then(setRepoReadme)
+        .catch(() => setRepoReadme("Error loading repo content."));
+    }
+  }, [activeRepo]);
 
   return (
     <div className="scene">
@@ -10,59 +27,86 @@ function App() {
       {zoomed && (
         <div className="about-panel">
           <div className="about-content">
-            <h2>About Me</h2>
-            <p>
-              Hello! I’m Angela, a Computer Science student exploring how design, interactivity, and code can come together to create meaningful experiences. I enjoy building interactive projects with React and JavaScript, experimenting with modeling and problem-solving in Python, and drawing on my background in C++ for strong fundamentals in algorithms.
-            </p>
+            {!activeRepo ? (
+              <>
+                <h2>About Me</h2>
+                <p>
+                  Hello! I’m Angela, a Computer Science student exploring how
+                  design, interactivity, and code can come together to create
+                  meaningful experiences. I enjoy building interactive projects
+                  with React and JavaScript, experimenting with modeling and
+                  problem-solving in Python, and drawing on my background in C++
+                  for strong fundamentals in algorithms.
+                </p>
 
-            <h3>Projects</h3>
-            <ul>
-              <li>
-                 <a
-                    href="https://github.com/shadowstar654/my-portfolio" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                 >
+                <h3>Projects</h3>
+                <ul className="projects-list">
+                  <li onClick={() => setActiveRepo("shadowstar654/my-portfolio")}>
                     Portfolio Site
-                 </a>
-              </li>
-              <li>
-                 <a
-                    href="https://github.com/shadowstar654/Client-Server-Chat-Model"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                 >
+                  </li>
+                  <li
+                    onClick={() =>
+                      setActiveRepo("shadowstar654/Client-Server-Chat-Model")
+                    }
+                  >
                     Client-Server-Chat Model
-                 </a>
-              </li>
-              <li>
-                 <a 
-                    href="https://github.com/shadowstar654/Dementia-Prediction-Model"
+                  </li>
+                  <li
+                    onClick={() =>
+                      setActiveRepo("shadowstar654/Dementia-Prediction-Model")
+                    }
+                  >
+                    Dementia Prediction Model
+                  </li>
+                  <li
+                    onClick={() =>
+                      setActiveRepo(
+                        "shadowstar654/Building-A-Router-and-Dive-Into-TCP"
+                      )
+                    }
+                  >
+                    Building a Router & Dive Into TCP
+                  </li>
+                </ul>
+
+                <h3>Skills</h3>
+                <ul>
+                  <li>React & JavaScript</li>
+                  <li>Three.js</li>
+                  <li>C++ & C</li>
+                  <li>Python</li>
+                </ul>
+              </>
+            ) : (
+              <>
+                <h2>{activeRepo}</h2>
+                <div
+                  className="readme"
+                  dangerouslySetInnerHTML={{ __html: repoReadme }}
+                />
+                <div className="repo-actions">
+                  <a
+                    href={`https://github.com/${activeRepo}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                 >
-                    Dementia-Prediction-Model
-                 </a>
-              </li>
-              <li>
-                 <a
-                    href="https://github.com/shadowstar654/Building-A-Router-and-Dive-Into-TCP"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                 >
-                    Building-A-Router-and-Dive-Into-TCP
-                 </a>
-              </li>
-            </ul>
+                    className="github-btn"
+                  >
+                    🚀 Press here to go to GitHub
+                  </a>
+                </div>
+                <button className="back-btn" onClick={() => setActiveRepo(null)}>
+                  ◀ Back to Projects
+                </button>
+              </>
+            )}
 
-            <h3>Skills</h3>
-            <ul>
-              <li>React</li>
-              <li>Three.js</li>
-              <li>JavaScript & C++</li>
-            </ul>
-
-            <button className="back-btn" onClick={() => setZoomed(false)}>
+            <button
+              className="back-btn"
+              onClick={() => {
+                setActiveRepo(null);
+                setZoomed(false);
+              }}
+            >
               ◀ Back
             </button>
           </div>
@@ -78,8 +122,10 @@ function App() {
               <div className="face front">
                 <div className="screen" onClick={() => setZoomed(true)}>
                   <div className="screen-link">
-                    Hi I’m Angela! <span className="cursor">▌</span>
-                    <div className="click-hint">Click on the screen to continue</div>
+                    Hi I’m Angela <span className="cursor">▌</span>
+                    <div className="click-hint">
+                      Click on the screen to continue
+                    </div>
                   </div>
                 </div>
               </div>

@@ -1,12 +1,26 @@
-# React + Vite
+# About My Portfolio  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hello! My name is Angela, and I am an aspiring Software Engineer. I created this portfolio as a way to share a little about myself while also challenging myself to learn new skills. Since I had not taken any formal academic classes prior to this project, I used it as an opportunity to explore and build a strong foundation in **React**, **CSS**, and **JavaScript**.  
 
-Currently, two official plugins are available:
+This portfolio is built with **React** and **Vite**, and I also incorporated **Three.js** to experiment with interactive visuals. The process of creating this project has been both rewarding and enjoyable, and it has helped me grow significantly as a developer.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Tech Stack  
+- [React](https://react.dev/) – Frontend framework  
+- [Vite](https://vitejs.dev/) – Development & build tool  
+- [Three.js](https://threejs.org/) – 3D graphics and interactivity  
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) – Styling and layout  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Future Improvements  
+I plan to continue expanding this portfolio by:  
+- Adding more interactive components  
+- Improving responsive design across devices  
+- Showcasing additional projects as I learn and grow  
+
+---
+
+
+
